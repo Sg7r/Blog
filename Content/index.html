@@ -1,0 +1,36 @@
+{% extends "Base.html" %}
+
+{% block content%}
+
+    <ul>
+
+        {% for index, item in notes %}
+            <h2 class="beautiful">
+                Post {{ index }}
+            </h2>
+
+            <li>
+
+
+                {% for elem in item%}
+                    {{loop.index}}
+
+                        <h3>{{elem}}</h3>
+
+               {% endfor %}-->
+            </li>
+
+        {% endfor %}
+    </ul>
+
+    {% set my_list = ['apple', 'banana', 'cherry'] %}
+
+    <ul>
+        {% for item in my_list %}
+            <li>Индекс: {{ loop.index }} - {{ item }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}

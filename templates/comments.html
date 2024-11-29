@@ -1,0 +1,45 @@
+{% extends "Base.html" %}
+
+{% block content%}
+    <h2>Post</h2>
+        <p>
+            {%for item in data_list %}
+            <h3>{{item.content}} </h3>
+            <div class="image">
+                <img src="../../media/{{ item.image.url }}" width=50% height=50% alt="Image">
+            </div>
+            <div class="grid">
+               <div class="text">
+                  <h4> Coments amount {{ item.comments_amount}} </h4>
+               </div>
+               <div class="text">
+                  <h4> {{ item.data}} </h4>
+               </div>
+            </div>
+            {% endfor %}
+        </p>
+
+    <h2>Comments</h2>
+        <p>
+            {%for each in comment_list %}
+            <div class="List_comments">
+                <div class="helpful">{{ forloop.counter }}</div>
+                <h4>{{each.content_body}},</h4>
+                <div class="helpful">{{each.data}}</div>
+            </div>
+            {% endfor %}
+        </p>
+
+    <form method="POST" id="123">
+
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Выводим форму в виде параграфов -->
+<!--        <label for="comment_text">Leave your comment:</label>-->
+<!--        <Textarea id="comment_text" name="comment_text" rows="4" cols="50"></textarea>-->
+        {%for item in data_list %}
+            <button type="submit" name="action" value="{{item.id}}">Add commnent</button>
+        {% endfor %}
+    </form>
+
+
+{% endblock %}

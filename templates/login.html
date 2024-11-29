@@ -1,0 +1,27 @@
+{% extends "Base.html" %}
+
+{% block content%}
+
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    {% if form.errors %}
+        <p style="color:red;">Please correct the error below.</p>
+    {% endif %}
+
+
+
+
+
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}  &lt;!&ndash; Выводим форму в виде параграфов &ndash;&gt;-->
+
+<!--        <button type="submit" name="action" value="home">Login</button>-->
+<!--    </form>-->
+
+
+{% endblock %}

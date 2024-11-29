@@ -1,0 +1,54 @@
+{% extends "Base.html" %}
+
+{% block content%}
+
+    <form method="POST">
+        {% csrf_token %}
+            <div class="reg-button">
+                <button type="submit" name="action" class="to-registration-form" value = "registration">Registration</button>
+                <button type="submit" name="action" class="to-registration-form" value = "login">Log in</button>
+            </div>
+
+    <ul>
+
+         {% for item in data_list %}
+            <h2 class="beautiful">
+                <a href="{% url 'comments' data=item.id %}" style=" text-decoration: none; color:black"> Post {{ forloop.counter }}</a>
+
+            </h2>
+            <div class="grid">
+                <div class="text">
+                     <h3> {{ item.content}} </h3>
+                </div>
+                <div class="image">
+<!--                   <h3> Number of image {{item.image}} </h3>-->
+                   <img src="media/{{ item.image.url }}" width="300" height="100" alt="Image">
+
+                </div>
+            </div>
+             <div class="grid">
+                <div class="text_footer">
+                    <h4> reaction positive {{item.reaction_positive}} </h4>
+                    <button type="submit" name="action" class="button_reaction" value = "add{{item.id}}_{{item.reaction_positive}}"> + </button>
+                </div>
+                 <div class="text_footer">
+                     <h4> reaction negative {{item.reaction_negative}} </h4>
+                     <button type="submit" name="action" class="button_reaction" value = "del{{item.id}}_{{item.reaction_negative}}"> - </button>
+                </div>
+                <div class="text">
+                   <h4> Coments amount {{ item.comments_amount}} </h4>
+                </div>
+                 <div class="text">
+                   <h4> {{ item.data}} </h4>
+                </div>
+            </div>
+
+
+        {% endfor %}
+
+    </ul>
+
+    </form>
+
+
+{% endblock %}

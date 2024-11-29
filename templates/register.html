@@ -1,0 +1,14 @@
+{% extends "Base.html" %}
+
+{% block content%}
+   <h2>Регистрация</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Выводим форму в виде параграфов -->
+
+        <button type="submit" name="action" value="registration">Зарегистрироваться</button>
+    </form>
+
+
+{% endblock %}
